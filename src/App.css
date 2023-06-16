@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.square {
+  height: 50px;
+  border: 1px solid #000;
+}
