@@ -1,29 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Grid from './Grid'
+import React, { useState } from 'react';
 
 function App() {
-  const seatDataString = '{1:30, 2:20, 3:10, 4:40}';
-  const seatData = seatDataString
-    .slice(1, -1)
-    .split(',')
-    .map((party) => {
-      const [number, percentage] = party.split(':');
+  const [seatData, setSeatData] = useState([]);
+
+  const handleInputChange = (e) => {
+    const inputString = e.target.value;
+    const seatsArray = inputString.split(',').map((item) => item.trim());
+
+    const seatsData = seatsArray.map((seat) => {
+      const [partyNumber, seatPercentage] = seat.split(':').map((item) => item.trim());
       return {
-        number: parseInt(number),
-        seats: parseInt(percentage),
-        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        partyNumber: parseInt(partyNumber),
+        seatPercentage: parseFloat(seatPercentage),
       };
     });
 
+    setSeatData(seatsData);
+  };
+
+  const renderGrid = () => {
+    return seatData.map((party) => {
+      const squareColor = `rgba(${party.partyNumber * 50}, 0, 0, ${party.seatPercentage / 100})`;
+      return (
+        <div key={party.partyNumber} style={{ background: squareColor, width: '100px', height: '100px' }}>
+          Party {party.partyNumber}
+        </div>
+      );
+    });
+  };
+
   return (
-    <div className="App">
-      <h1>Parliament Grid</h1>
-      <Grid seatData={seatData} />
+    <div>
+      <input type="text" placeholder="Enter seat data" onChange={handleInputChange} />
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>{renderGrid()}</div>
     </div>
   );
 }
 
-export default App
+export default App;
