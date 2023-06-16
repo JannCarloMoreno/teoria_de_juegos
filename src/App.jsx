@@ -2,34 +2,28 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Grid from './Grid'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const seatDataString = '{1:30, 2:20, 3:10, 4:40}';
+  const seatData = seatDataString
+    .slice(1, -1)
+    .split(',')
+    .map((party) => {
+      const [number, percentage] = party.split(':');
+      return {
+        number: parseInt(number),
+        seats: parseInt(percentage),
+        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+      };
+    });
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMRs
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <h1>Parliament Grid</h1>
+      <Grid seatData={seatData} />
+    </div>
+  );
 }
 
 export default App
