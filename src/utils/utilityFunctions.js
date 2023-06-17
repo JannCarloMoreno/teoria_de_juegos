@@ -11,43 +11,60 @@ const createCoallitions = (benches) => {
     return result;
 }
 
-const benches = {b1: 0.3, b2:0.2, b3: 0.35, b4:0.4}
-
 const coallitionLength = coallition => coallition.length
-const coallitionPercentage = coallition => 
+
+const coallitionPercentage = ({coallition, benches}) => 
         coallition.reduce((acc,current)=> acc+benches[current],0).toFixed(4)
-const victoryFunction = value => value >= 0.5? 1:0 
+
+const victoryFunction = (value,percentageApproval) => value >= percentageApproval? 1:0 
 
 const generateShapleyTable = ({benches, percentageApproval}) => {
-  coallitions = createCoallitions(benches)
+  const coallitions = createCoallitions(benches)
   const shapleyTable = {}
   shapleyTable['none'] = {
     k:0,
     S:0,
     vS:0
   }
-  for (coallition of coallitions){
+  for (let coallition of coallitions){
     const S = coallitionPercentage(coallition)
     shapleyTable[coallition.join('-')] = {
       k: coallitionLength(coallition),
       S,
-      vS: victoryFunction(S)
+      vS: victoryFunction(S, percentageApproval)
     }
   }
   return shapleyTable
 }
 
-const table  = generateShapleyTable({benches, percentageApproval: 5})
-const getCoallitionWithout = (bench, coallition) => {
-  if(coallition.length < 2) return 'none'
-  
-}
+const getCoallitionWithout = (bench, coallition) =>
+   coallition.split('-').length < 2? 
+      'none'
+      : coallition.split('-').filter(b => b !== bench).join('-')
 
+const factorialize = num => {
+  if (num < 0) 
+        return -1;
+  else if (num == 0) 
+      return 1;
+  else {
+      return (num * factorialize(num - 1));
+  }
+}
 
 const calculateShapleyFor = (bench, table) => {
   const coallitionsWithBench = Object.keys(table).filter(coallition => coallition.includes(bench))
-  
-  return coallitionsWithBench
+  const n = Math.sqrt(Object.keys(table).length)
+  return coallitionsWithBench.reduce((acc, current) => {
+    
+    const coallitionData = table[current]
+    const inverseCoallitionData = table[getCoallitionWithout(bench,current)]
+    const sumValue = ((factorialize(coallitionData.k-1)*factorialize(n-coallitionData.k))/(factorialize(n)))*(parseFloat(coallitionData.vS)-parseFloat(inverseCoallitionData.vS))
+    return acc + sumValue
+  },0)
 }
 
-//calculateShapleyFor('b1', table)
+export const calculateShapleyForSenate = ({benches, percentageApproval}) => {
+  const table = generateShapleyTable({benches, percentageApproval})
+  return Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
+}
