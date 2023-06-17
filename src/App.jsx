@@ -74,7 +74,9 @@ function App() {
   return (
     <div>
       <input id='values' type="text" placeholder="Enter seat data"/>
-      <button onClick={handleInputChange}>Generate Senate</button>
+      <br/>
+      <button onClick={handleInputChange}>Draw Senate</button>
+      <br/>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>{renderGrid()}</div>
     </div>
   );
