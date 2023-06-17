@@ -40,44 +40,68 @@ function App() {
     return bgColor;
   }
   const renderGrid = () => {
-    // return seatData.map((party) => {
-    //   const squareColor = `rgba(${party.partyNumber * 50}, 0, 0, ${party.seatPercentage / 100})`;
-    //   return (
-    //     Array(party.totalSeats)
-    //       .fill(0)
-    //       .map((item, index) =>
-    //         <div className = 'counter' key={index} style={{ background: squareColor, width: '20px', height: '20px', margin: '2px', border: '1px solid white' }}>
-    //         </div>
-    //       ))
-    // });
     const seats = [];
-    const {totalSeats, ...seatsValues} = seatData;
+    const { totalSeats, ...seatsValues } = seatData;
     let seatsKeys = Object.keys(seatsValues);
-    let previousColors = []
+    let previousColors = [];
+  
+    // Calculate the angle between each seat
+    const angleStep = 180 / (totalSeats + 1);
+  
+    // Calculate the radius of the semicircle
+    const radius = 100; // Adjust this value to control the size of the semicircle
+  
     for (let seat of seatsKeys) {
       const amountSeats = Math.round(totalSeats * seatsValues[seat]);
       if (amountSeats === 0 || Number.isNaN(amountSeats)) continue;
       let color = squareColor();
-      while(previousColors.includes(color)) {
+      while (previousColors.includes(color)) {
         color = squareColor();
       };
-      seats.push(Array(amountSeats)
-      .fill(0)
-      .map((item, index) =>
-        <div className = 'counter' key={index} style={{ background: color, width: '20px', height: '20px', margin: '2px', border: '1px solid white' }}>
-        </div>
-      ))
+  
+      const seatElements = Array(amountSeats).fill(0).map((item, index) => {
+        // Calculate the position of each square in the semicircle
+        const angle = (index + 1) * angleStep;
+        const xPos = radius * Math.cos(angle * (Math.PI / 180));
+        const yPos = radius * Math.sin(angle * (Math.PI / 180));
+  
+        return (
+          <div
+            className="counter"
+            key={index}
+            style={{
+              background: color,
+              width: '20px',
+              height: '20px',
+              margin: '2px',
+              border: '1px solid white',
+              transform: `translate(${xPos}px, ${yPos}px)`,
+            }}
+          ></div>
+        );
+      });
+  
+      seats.push(seatElements);
     }
-    return seats
+  
+    return seats;
   };
-
+  
   return (
     <div>
-      <input id='values' type="text" placeholder="Enter seat data"/>
-      <br/>
+      <input id="values" type="text" placeholder="Enter seat data" />
+      <br />
       <button onClick={handleInputChange}>Draw Senate</button>
-      <br/>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>{renderGrid()}</div>
+      <br />
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          position: 'relative', // Required for positioning the squares
+        }}
+      >
+        {renderGrid()}
+      </div>
     </div>
   );
 }
