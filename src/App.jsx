@@ -4,7 +4,7 @@ function App() {
   const [seatData, setSeatData] = useState([]);
 
   const handleInputChange = (e) => {
-    const inputString = e.target.value;
+    const inputString = document.getElementById('values').value
     const [totalSeats, ...seatsArray]= inputString.split(',').map((item) => item.trim());
     
     const test = seatsArray.filter(item => item.includes('.') && item.length >= 3)
@@ -73,7 +73,8 @@ function App() {
 
   return (
     <div>
-      <input type="text" placeholder="Enter seat data" onChange={handleInputChange} />
+      <input id='values' type="text" placeholder="Enter seat data"/>
+      <button onClick={handleInputChange}>Generate Senate</button>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>{renderGrid()}</div>
     </div>
   );
