@@ -1,0 +1,67 @@
+.simulator{
+    box-sizing: border-box;
+    min-height: 50vh;
+    color: black;
+    background: antiquewhite;
+    margin: 2% 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    box-shadow: 2px 3px 10px 0px rgba(248, 248, 248, 0.432);
+}
+
+.simulator__config{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: #fff;
+    padding: 4% 6%;
+    text-align: center;
+}
+
+.simulator__config--labelVer{
+    display: flex;
+    flex-direction: column;
+    margin: 2% 0;
+    gap: 10px;
+    width: 100%;
+    text-align: start;
+    font-size: small;
+    font-style: italic;
+}
+
+
+.simulator__config--labelHor{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin: 2% 0;
+}
+
+.simulator__config__companies{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.simulator__config__companies h4{
+    margin: 0;
+}
+
+.simulator__config__companies button{
+    box-sizing: border-box;
+    width: 100%;
+    height: 4vh;
+    border-radius: 2px;
+    margin: 2% 0;
+}
+
+.simulator__results{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E5E7EB;
+}

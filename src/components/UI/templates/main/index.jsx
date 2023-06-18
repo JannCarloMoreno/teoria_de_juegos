@@ -31,6 +31,10 @@ const getValues = ref => {
     return generateBenchs(seatsArray)
 }
 
+const refresh = () => {
+    window.location.reload(false);
+}
+
 export default function Main(){
     const [totalSeats, setTotalSeats] = useState(0)
     const [data, setData] = useState(null)
@@ -89,6 +93,7 @@ export default function Main(){
                 <section className='prompt'>
                     <Prompt ref={promptRef} buttonText='Generate' handleChange={handleClick} inputPlaceholder='set configuration' />
                     {data && <Button className='showButton' onClick={generateTable} text={tableButtonText}/>}
+                    <Button onClick={refresh} text="refresh"/>
                     <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
                     <label className='totalSeats'>% de ocupación requerido: {percentageApproval}</label>
                 </section>
