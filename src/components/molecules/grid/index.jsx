@@ -6,7 +6,9 @@ export default function Grid({color, amount, name, value, paidValue}){
     const [isHover, setIsHover] = useState(false)
     
     const aux = value.toFixed(3)*100
+    const aux2 = value.toFixed(3)*paidValue
     const [this_value, setValue] = useState(aux.toFixed(1));
+    const [this_payvalue, setPayvalue] = useState(aux2.toFixed(2));
 
     const handleMouseEnter = () => setIsHover(true)
 
@@ -33,7 +35,7 @@ export default function Grid({color, amount, name, value, paidValue}){
             }  
             </div>
             <label htmlFor='' className="gridLabel">Participación: {this_value}%</label>
-            <label htmlFor='' className="gridLabel">Valor a pagar: {(this_value/100)*paidValue}$</label>
+            <label htmlFor='' className="gridLabel">Valor a pagar: {this_payvalue}$</label>
         </div>
 
                 
