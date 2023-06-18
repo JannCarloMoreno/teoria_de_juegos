@@ -1,4 +1,4 @@
-/* Este es un generador de números aleatorios tomado de taller 2 de modelos Estocásticos */
+/* Este es un generador de números aleatorios */
 export default lcgrand;
 
 /* Definición de constantes */
@@ -51,7 +51,8 @@ function lcgrand(num){
     zrng[num] = zi;
     let result = ((zi >>> 7) | 1) / 16777216.0;
 
-    return parseFloat(result.toFixed(30));
+    const value = parseFloat(result.toFixed(30));
+    return value;
     /* El operador >>> se usa para desplazamientiode bits
     a la derecha con 0 de relleno. Todas las operaciones 
     bitwise en JS son realizadas en números de 32 bits */
