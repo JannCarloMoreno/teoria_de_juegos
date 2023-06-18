@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import{ useState } from 'react';
 
 function App() {
   const [seatData, setSeatData] = useState([]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = () => {
     const inputString = document.getElementById('values').value
     const [totalSeats, ...seatsArray]= inputString.split(',').map((item) => item.trim());
     
@@ -60,7 +60,7 @@ function App() {
       let color = squareColor();
       while(previousColors.includes(color)) {
         color = squareColor();
-      };
+      }
       seats.push(Array(amountSeats)
       .fill(0)
       .map((item, index) =>

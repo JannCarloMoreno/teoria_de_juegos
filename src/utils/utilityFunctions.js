@@ -56,7 +56,6 @@ const calculateShapleyFor = (bench, table) => {
   const coallitionsWithBench = Object.keys(table).filter(coallition => coallition.includes(bench))
   const n = Math.sqrt(Object.keys(table).length)
   return coallitionsWithBench.reduce((acc, current) => {
-    
     const coallitionData = table[current]
     const inverseCoallitionData = table[getCoallitionWithout(bench,current)]
     const sumValue = ((factorialize(coallitionData.k-1)*factorialize(n-coallitionData.k))/(factorialize(n)))*(parseFloat(coallitionData.vS)-parseFloat(inverseCoallitionData.vS))
