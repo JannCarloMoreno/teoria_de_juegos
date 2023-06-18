@@ -26,7 +26,6 @@ function App() {
     //     partyFour: parseFloat(partyFour),
     //   };
     // });
-    console.log(seatsData)
     setSeatData(seatsData);
   };
 

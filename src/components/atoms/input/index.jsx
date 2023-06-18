@@ -1,8 +1,11 @@
 import './styles.css'
+import { forwardRef } from 'react'
 
-export default function Input ({type='text', placeholder='', name='', onChange=null}){
+const Input =  forwardRef(function Input ({type='text', placeholder='', name='', onChange=null}, ref){
     return (
-        onChange?<input type={type} name={name} placeholder={placeholder} onChange={onChange}/>
-            :<input type={type}  name={name} placeholder={placeholder}  />
+        onChange?<input ref={ref} type={type} name={name} placeholder={placeholder} onChange={onChange}/>
+            :<input ref={ref} type={type}  name={name} placeholder={placeholder}  />
     )
-}
+})
+
+export default Input

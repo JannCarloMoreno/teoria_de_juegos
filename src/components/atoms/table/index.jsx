@@ -26,9 +26,10 @@ export default function ShapleyTable({data}) {
         <div>
             <DataGrid
                 sx = {{
-                    margin: 5,
+                    margin: '0 10px',
                     backgroundColor: 'white',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    height: '100%'
                 }}
                 rows={generateRows(data)}
                 columns ={columns}

@@ -27,7 +27,7 @@ const generateShapleyTable = ({benches, percentageApproval}) => {
     vS:0
   }
   for (let coallition of coallitions){
-    const S = coallitionPercentage(coallition)
+    const S = coallitionPercentage({coallition, benches})
     shapleyTable[coallition.join('-')] = {
       k: coallitionLength(coallition),
       S,
@@ -68,7 +68,7 @@ const calculateShapleyForSenate = ({benches, percentageApproval}) => {
   return Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
 }
 
-export default {
+export  {
   generateShapleyTable,
   calculateShapleyForSenate
 }
