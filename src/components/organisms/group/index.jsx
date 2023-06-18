@@ -1,5 +1,5 @@
-import {Grid} from '../../molecules/grid'
-import {colorGenerator} from '../../../utils/shapleyFunction'
+import Grid from '../../molecules/grid'
+import { colorGenerator } from '../../../utils/util'
 import './styles.css'
 
 export default function Group({groups}) {

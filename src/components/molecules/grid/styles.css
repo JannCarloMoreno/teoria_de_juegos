@@ -2,11 +2,12 @@
     min-width: 100px;
     min-height: 100px;
     width: 200px;
-    height: 200px;
+    height: auto;
     border: 1px solid whitesmoke;
     border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(5,1fr);
     align-items: center;
     justify-items: center;
+    margin: 10px;
 }

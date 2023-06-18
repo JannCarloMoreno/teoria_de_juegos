@@ -1,11 +1,13 @@
 .group{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    width: 60vw;
+    max-width: 60vw;
     height: auto;
     align-items: center;
     justify-items: center;
     border: 1px solid whitesmoke;
-    border-radius: 10px;
-    
+    border-radius: 10px 10px 5px 5px;
+    gap: 20px;
+    padding: 20px;
+
 }
