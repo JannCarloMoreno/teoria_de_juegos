@@ -1,6 +1,6 @@
 import lcgrand from './lcgrand.js';
 
-function funcionPercentilExpon(media) {
+export default function funcionPercentilExpon(media) {
     /* Función generadora percentil exponencial */
     /* Retorna una variable aleatoria exponencial con media "media" */
 
