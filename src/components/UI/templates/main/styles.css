@@ -1,6 +1,11 @@
 .main{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    /* margin: 5%; */
+}
+
+.main__title{
+    text-align: center;
 }
 
 .prompt{
