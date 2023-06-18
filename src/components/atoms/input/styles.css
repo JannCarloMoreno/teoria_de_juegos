@@ -1,0 +1,22 @@
+input{
+    background-color: rgb(52, 52, 52);
+    color: rgba(255, 255, 255, 0.60);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    padding: 10px;
+    border-radius: 5px
+}
+
+input::placeholder{
+    color: rgba(255, 255, 255, 0.40);
+    
+}
+
+input:focus {
+    color: rgb(0, 255, 255);
+    background-color: #212121;
+    outline-color: #535bf2;
+    box-shadow: 0 0 50px #535bf2;
+    border: 2px solid #4d56fe;
+    transition: .1s;
+    transition-property: box-shadow;
+}
