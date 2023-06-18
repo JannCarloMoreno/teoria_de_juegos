@@ -35,10 +35,10 @@ export default function ShapleyTable({data}) {
                 columns ={columns}
                 initialState = {{
                     pagination: {
-                        paginationModel: {page: 0, pageSize: 5}
+                        paginationModel: {page: 0, pageSize: 8}
                     }
                 }}
-                pageSizeOptions = {[5,10]}
+                pageSizeOptions = {[8,10]}
             />
         </div>
     )

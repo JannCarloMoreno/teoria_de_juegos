@@ -5,7 +5,7 @@ import Button from '../../../atoms/button'
 import ShapleyTable from '../../../atoms/table'
 import { useRef, useState } from 'react'
 import {safeParseFloat, calculateAmount, generateBenchs} from '../../../../utils/util'
-import { generateShapleyTable } from '../../../../utils/shapleyFunction'
+import { generateShapleyTable, calculateShapleyForSenate } from '../../../../utils/shapleyFunction'
 
 const getInputData = ref => {
     const value = ref.current.value
@@ -15,17 +15,31 @@ const getInputData = ref => {
     return generateBenchs(seatsArray)
 }
 
+const getValues = ref => {
+    const value = ref.current.value
+    let [totalSeats, ...seatsArray]= value.split(',').map((item) => item.trim())
+    seatsArray = seatsArray.filter(item => item.includes('.') && item.length >= 3)
+    seatsArray = seatsArray.map(bench =>safeParseFloat(bench),totalSeats);
+    return generateBenchs(seatsArray)
+}
+
 export default function Main(){
     const [data, setData] = useState(null)
     const [table, setTable] = useState(null)
     const [isShowing, setIsShowing] = useState(false)
+    const [values, setValues] = useState(null)
     const promptRef = useRef(null)
 
     let tableButtonText = `${isShowing?'Show':'Hide'} table`
     
     const handleClick = () => {
         const incomingData = getInputData(promptRef)
-        if(JSON.stringify(incomingData)!== JSON.stringify(data)) setData(incomingData)
+        const val = getValues(promptRef)
+        console.log(calculateShapleyForSenate({benches:val, percentageApproval: 0.5}))
+        if(JSON.stringify(incomingData)!== JSON.stringify(data)) {
+            setValues(calculateShapleyForSenate({benches:getValues(promptRef), percentageApproval: 0.5}))
+            setData(incomingData)
+        }
     }
 
     
@@ -48,7 +62,7 @@ export default function Main(){
                     {data && <Button className='showButton' onClick={generateTable} text={tableButtonText}/>}
                 </section>
                 <section className='data'>
-                    {data && <Group groups={data} /> }
+                    {data && <Group groups={data} values={values} /> }
                     {table && <ShapleyTable data={table}/>}
                 </section>
             </section>

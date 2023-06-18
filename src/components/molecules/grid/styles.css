@@ -11,3 +11,15 @@
     justify-items: center;
     margin: 10px;
 }
+
+.gridLabel{
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

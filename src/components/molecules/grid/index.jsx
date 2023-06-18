@@ -2,7 +2,7 @@ import Square from "../../atoms/square"
 import './styles.css'
 import { useState } from "react"
 
-export default function Grid({color, amount}){
+export default function Grid({color, amount, name, value}){
     const [isHover, setIsHover] = useState(false)
     
     const handleMouseEnter = () => setIsHover(true)
@@ -15,17 +15,21 @@ export default function Grid({color, amount}){
         return null
     }
     return (
-        <div className="grid" 
-            style={gridStyle(color)}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-        {
-            Array(amount)
-            .fill(0)
-            .map((_,index) => 
-                    <Square  color={color} key={index}/>)
-        }  
+        <div className="container">
+            <label className='gridLabel' htmlFor="" >{name}</label>
+            <div className="grid" 
+                style={gridStyle(color)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+            {
+                Array(amount)
+                .fill(0)
+                .map((_,index) => 
+                        <Square  color={color} key={index}/>)
+            }  
+            </div>
+            <label htmlFor='' className="gridLabel">Shapley: {value.toFixed(3)}</label>
         </div>
 
                 
