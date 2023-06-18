@@ -11,7 +11,7 @@ const safeParseFloat = num => parseFloat(Number.isNaN(num)? 0:num)
 const calculateAmount = (percentage, total) => Math.round(total*percentage)
 
 const generateBenchs = benches => benches.reduce((acc, current, index) => {
-    return {...acc, [`b${index+1}`]: current}
+    return {...acc, [`C${index+1}`]: current}
 },{})
 
 export  {colorGenerator, safeParseFloat, calculateAmount, generateBenchs}

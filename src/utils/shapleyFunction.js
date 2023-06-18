@@ -27,7 +27,7 @@ const victoryFunction = (value,percentageApproval) => {
 
 const intValue = value > 2 ? (+value)/100 : +value
 
-console.log({value,percentageApproval,intValue})
+//console.log({value,percentageApproval,intValue})
 
 if(intValue >= percentageApproval){
   return 1
@@ -87,17 +87,23 @@ const calculateShapleyFor = (bench, table) => {
 const calculateShapleyForSenate = ({benches, percentageApproval}) => {
 
   /*
+  console.log("shapley inputs")
+  console.log({benches, percentageApproval})
   */
- console.log("shapley inputs")
- console.log({benches, percentageApproval})
 
   const table = generateShapleyTable({benches, percentageApproval})
+  
+  /*
   console.log("table generated")
   console.log(this_shapleyTable)
+  */
 
   const aux = Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
+  /*
   console.log("final result")
   console.log(aux)
+  */
+  
   return aux
 
 }

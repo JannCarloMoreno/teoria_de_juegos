@@ -15,23 +15,29 @@ const getInputData = ref => {
     return generateBenchs(seatsArray)
 }
 
+let this_totalSeats = 0
+
 const getValues = ref => {
     const value = ref.current.value
     let [totalSeats, ...seatsArray]= value.split(',').map((item) => item.trim())
     seatsArray = seatsArray.filter(item => item.includes('.') && item.length >= 3)
     seatsArray = seatsArray.map(bench =>safeParseFloat(bench),totalSeats);
+    console.log(totalSeats)
+    this_totalSeats = totalSeats
     return generateBenchs(seatsArray)
 }
 
 export default function Main(){
+    const [totalSeats, setTotalSeats] = useState(0)
     const [data, setData] = useState(null)
     const [table, setTable] = useState(null)
     const [isShowing, setIsShowing] = useState(false)
     const [values, setValues] = useState(null)
+    
     const promptRef = useRef(null)
 
     //Cantidad de maquinas requeridas, maximo 100
-    const percentageApproval = 0.85
+    const percentageApproval = 0.50
 
     let tableButtonText = `${isShowing?'Show':'Hide'} table`
     
@@ -57,6 +63,7 @@ export default function Main(){
                 setIsShowing(true)
             }
     }
+    console.log(data)
     
     return (
         <section className='main'>
@@ -66,7 +73,7 @@ export default function Main(){
                     {data && <Button className='showButton' onClick={generateTable} text={tableButtonText}/>}
                 </section>
                 <section className='data'>
-                    {data && <Group groups={data} values={values} /> }
+                    {data && <Group groups={data} values={values} paidValue={this_totalSeats} /> }
                     {table && <ShapleyTable data={table}/>}
                 </section>
             </section>

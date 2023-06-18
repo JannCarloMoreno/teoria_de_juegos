@@ -2,10 +2,10 @@ import { DataGrid } from '@mui/x-data-grid';
 
 
 const columns = [
-    {field: 'coallitionName', headerName: 'Coalisiones posibles', width: 200, headerAlign: 'center', align: 'center'},
+    {field: 'coallitionName', headerName: 'Coaliciones posibles', width: 200, headerAlign: 'center', align: 'center'},
     {field: 'k', headerName: '# Jugadores', width: 100,headerAlign: 'center', align: 'center'},
-    {field: 'S', headerName: '% occupation', width: 100,headerAlign: 'center', align: 'center'},
-    {field: 'vS', headerName: 'Characteristic value', width: 200,headerAlign: 'center', align: 'center'},
+    {field: 'S', headerName: '% Ocupación', width: 100,headerAlign: 'center', align: 'center'},
+    {field: 'vS', headerName: 'Funcion de pagos', width: 200,headerAlign: 'center', align: 'center'},
     
 ]
 
