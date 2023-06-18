@@ -63,7 +63,12 @@ const calculateShapleyFor = (bench, table) => {
   },0)
 }
 
-export const calculateShapleyForSenate = ({benches, percentageApproval}) => {
+const calculateShapleyForSenate = ({benches, percentageApproval}) => {
   const table = generateShapleyTable({benches, percentageApproval})
   return Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
+}
+
+export default {
+  generateShapleyTable,
+  calculateShapleyForSenate
 }
