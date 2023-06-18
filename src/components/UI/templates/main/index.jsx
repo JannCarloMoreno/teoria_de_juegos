@@ -30,21 +30,25 @@ export default function Main(){
     const [values, setValues] = useState(null)
     const promptRef = useRef(null)
 
+    //Cantidad de maquinas requeridas, maximo 100
+    const percentageApproval = 0.85
+
     let tableButtonText = `${isShowing?'Show':'Hide'} table`
     
     const handleClick = () => {
         const incomingData = getInputData(promptRef)
         const val = getValues(promptRef)
-        console.log(calculateShapleyForSenate({benches:val, percentageApproval: 0.5}))
         if(JSON.stringify(incomingData)!== JSON.stringify(data)) {
-            setValues(calculateShapleyForSenate({benches:getValues(promptRef), percentageApproval: 0.5}))
+
+            //calculate caracterisic function
+            setValues(calculateShapleyForSenate({benches:getValues(promptRef), percentageApproval: percentageApproval}))  
             setData(incomingData)
         }
     }
 
     
     const generateTable = () => {
-        const incomingTable = generateShapleyTable({benches: data, percentageApproval: 0.5})
+        const incomingTable = generateShapleyTable({benches: data, percentageApproval: percentageApproval})
             if(isShowing){
                 setTable(incomingTable)
                 setIsShowing(false)

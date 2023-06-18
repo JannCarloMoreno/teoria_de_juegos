@@ -1,3 +1,8 @@
+import { tableBodyClasses } from "@mui/material";
+
+let this_shapleyTable = {}
+
+
 const createCoallitions = (benches) => {
     const keys = Object.keys(benches);
     const result = [];
@@ -13,12 +18,26 @@ const createCoallitions = (benches) => {
 
 const coallitionLength = coallition => coallition.length
 
-const coallitionPercentage = ({coallition, benches}) => 
-        coallition.reduce((acc,current)=> acc+benches[current],0).toFixed(4)
+const coallitionPercentage = ({coallition, benches}) => coallition.reduce((acc,current)=> acc+benches[current],0).toFixed(4)
 
-const victoryFunction = (value,percentageApproval) => value >= percentageApproval? 1:0 
 
-const generateShapleyTable = ({benches, percentageApproval}) => {
+  
+const victoryFunction = (value,percentageApproval) => {
+//Porcentaje de aprovación !! meter funcion caracteristica
+
+const intValue = value > 2 ? (+value)/100 : +value
+
+console.log({value,percentageApproval,intValue})
+
+if(intValue >= percentageApproval){
+  return 1
+}else{
+  return 0
+}
+}
+
+
+const generateShapleyTable = ({benches, percentageApproval}) => {   
   const coallitions = createCoallitions(benches)
   const shapleyTable = {}
   shapleyTable['none'] = {
@@ -34,6 +53,8 @@ const generateShapleyTable = ({benches, percentageApproval}) => {
       vS: victoryFunction(S, percentageApproval)
     }
   }
+ 
+  this_shapleyTable = shapleyTable
   return shapleyTable
 }
 
@@ -64,8 +85,21 @@ const calculateShapleyFor = (bench, table) => {
 }
 
 const calculateShapleyForSenate = ({benches, percentageApproval}) => {
+
+  /*
+  */
+ console.log("shapley inputs")
+ console.log({benches, percentageApproval})
+
   const table = generateShapleyTable({benches, percentageApproval})
-  return Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
+  console.log("table generated")
+  console.log(this_shapleyTable)
+
+  const aux = Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
+  console.log("final result")
+  console.log(aux)
+  return aux
+
 }
 
 export  {
