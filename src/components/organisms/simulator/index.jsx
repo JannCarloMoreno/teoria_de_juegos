@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import "./styles.css";
 
-export default function Simulator() {
+export default function Simulator({ sendlambda }) {
+
+
+  const [lambda, setLambda] = useState(0);
+
+
+const handleLambda = (event) => {
+  setLambda(event.target.value)
+}
+
+useEffect(() => {
+  sendlambda(lambda)
+}, [lambda]);
+
   return (
     <div className="simulator">
       <section className="simulator__config">
@@ -8,7 +22,7 @@ export default function Simulator() {
         <section>
           <label htmlFor="" className="simulator__config--labelVer">
             tasa de llegada
-            <input type="text" />
+            <input type="number" onChange={handleLambda}  />
           </label>
           <label htmlFor="" className="simulator__config--labelVer">
             cantidad de empresas

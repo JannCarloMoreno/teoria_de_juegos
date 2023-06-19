@@ -31,36 +31,21 @@ const getValues = ref => {
     return generateBenchs(seatsArray)
 }
 
-const refresh = () => {
-    window.location.reload(false);
-}
 
-export default function Main(){
+
+export default function Main({percentageApproval}){
     const [totalSeats, setTotalSeats] = useState(0)
     const [data, setData] = useState(null)
     const [table, setTable] = useState(null)
     const [isShowing, setIsShowing] = useState(false)
     const [values, setValues] = useState(null)
 
-    const [percentageApproval, setPercentageApproval] = useState(0)
-    
+   
     const promptRef = useRef(null)
 
-    //inputLambda, entrada del usuario, media entre llegadas de % de ocupación requerida por hora del total de maquinas contratadas
-    //restrucciones: entre 1 y 100
-    const lambda = 50
-
-    //% de ocupación requerida por hora del total de maquinas contratadas
-    //GENERADOR ALEATORIO LCGRAND
-
-    useEffect(() => {
-        setPercentageApproval(funcionPercentilExpon(lambda))
-    }, []);
-    
-
-
-
+   
     console.log(percentageApproval)
+
 
     let tableButtonText = `${isShowing?'Show':'Hide'} table`
     
@@ -93,7 +78,6 @@ export default function Main(){
                 <section className='prompt'>
                     <Prompt ref={promptRef} buttonText='Generate' handleChange={handleClick} inputPlaceholder='set configuration' />
                     {data && <Button className='showButton' onClick={generateTable} text={tableButtonText}/>}
-                    <Button onClick={refresh} text="refresh"/>
                     <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
                     <label className='totalSeats'>% de ocupación requerido: {percentageApproval}</label>
                 </section>
