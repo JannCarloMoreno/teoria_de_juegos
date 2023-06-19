@@ -3,7 +3,7 @@ name: 'Netlify deploy'
 on: 
     push:
         branches:
-            - 'main'
+            - 'develop'
 
 
 jobs:
@@ -13,5 +13,7 @@ jobs:
     steps:
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
+          NETLIFY_SITE_ID: ${{ secrets.SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.PROYECTO_ESTOCASTICOS }}
           NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: 'dist'

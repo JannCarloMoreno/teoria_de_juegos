@@ -31,8 +31,6 @@ export default function Main({ getPercentageApproval, getData }) {
   const [data, setData] = useState(null)
   const [values, setValues] = useState(null)
 
-  const [dataBuilder, setDataBuilder] = useState({})
-
   const [prompt, setPrompt] = useState("")
 
   const promptRef = useRef(null)

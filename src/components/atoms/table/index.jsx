@@ -1,4 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
+import './styles.css'
 
 
 const columns = [

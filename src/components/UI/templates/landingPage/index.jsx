@@ -1,11 +1,7 @@
 import "./styles.css";
 import Header from "../../../organisms/header";
 import Simulator from "../../../organisms/simulator";
-import Main from "../main";
-import ProgressBar from "../../../organisms/progressbar";
-import Button from "../../../atoms/button";
-import { useEffect, useState } from "react";
-import funcionPercentilExpon from "../../../../utils/percentilExpon";
+import { useState } from "react";
 import Sincronizacion from "../../../organisms/sincronizacion";
 
   export default function LandingPage() {

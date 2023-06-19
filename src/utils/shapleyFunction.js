@@ -1,8 +1,3 @@
-import { tableBodyClasses } from "@mui/material";
-
-let this_shapleyTable = {}
-
-
 const createCoallitions = (benches) => {
     const keys = Object.keys(benches);
     const result = [];
@@ -68,8 +63,6 @@ const generateShapleyTable = ({benches, percentageApproval}) => {
       vS: victoryFunction(S, percentageApproval)
     }
   }
- 
-  this_shapleyTable = shapleyTable
   return shapleyTable
 }
 
