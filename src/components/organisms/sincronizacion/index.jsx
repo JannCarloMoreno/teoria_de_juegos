@@ -7,18 +7,26 @@ import Button from "../../atoms/button";
 import funcionPercentilExpon from "../../../utils/percentilExpon";
 
 
-const Sincronizacion = ({ lambda }) => {
+const Sincronizacion = ({ data, getPlay}) => {
   const [percentageApproval, setPercentageApproval] = useState(0);
+  const [this_data, setThis_Data] = useState({});
 
-
-  console.log("lambda", lambda);
   //Generador aleatorio lcGrand
+  useEffect(() => {
+  setPercentageApproval(funcionPercentilExpon(data?.lambda));
+    
+  }, [data?.lambda]);
 
   useEffect(() => {
-  setPercentageApproval(funcionPercentilExpon(lambda));
-    
-  }, [lambda]);
-
+    if(getPlay){
+      setThis_Data(data);
+      console.log(this_data)
+      setTimeout(() => {
+        play()
+      }, 2000);
+      
+    }
+  }, [getPlay]);
 
   const play = () => {
     if (isActive) {
@@ -31,9 +39,12 @@ const Sincronizacion = ({ lambda }) => {
 
           if (newCounter % 10 === 0) {
             clearInterval(id); // Pausar la simulación
-            setText("Simular");
+            setText("Continuar");
             //al reanudar la simulacion luego de 10 segundos, se actualiza porcentajeAproval por un nuevo valor aleatorio
-            setPercentageApproval(funcionPercentilExpon(lambda));
+            setPercentageApproval(funcionPercentilExpon(data?.lambda));
+            //volver a calcular todo en el main
+
+
           }
           return newCounter;
         });
@@ -42,12 +53,12 @@ const Sincronizacion = ({ lambda }) => {
     }
 
     setIsActive(!isActive);
-    setText(isActive ? "Simular" : "Pausar");
+    setText(isActive ? "Continuar" : "Pausar");
   };
 
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [text, setText] = useState("Simular");
+  const [text, setText] = useState("Continuar");
   const [intervalId, setIntervalId] = useState(null);
 
   return (
@@ -58,7 +69,9 @@ const Sincronizacion = ({ lambda }) => {
         <br />
         <Button onClick={play} text={text} />
       </section>
-      <Main getPercentageApproval={percentageApproval} />
+
+      <Main getPercentageApproval={percentageApproval} getData={this_data}/>
+
     </>
   );
 };
