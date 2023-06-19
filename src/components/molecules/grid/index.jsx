@@ -5,10 +5,9 @@ import { useState } from "react"
 export default function Grid({color, amount, name, value, paidValue}){
     const [isHover, setIsHover] = useState(false)
     
-    const aux = value.toFixed(3)*100
-    const aux2 = value.toFixed(3)*paidValue
-    const [this_value, setValue] = useState(aux.toFixed(1));
-    const [this_payvalue, setPayvalue] = useState(aux2.toFixed(2));
+    const this_value = (value.toFixed(3)*100).toFixed(1)
+    const this_payvalue = (value.toFixed(3)*paidValue).toFixed(2)
+
 
     const handleMouseEnter = () => setIsHover(true)
 

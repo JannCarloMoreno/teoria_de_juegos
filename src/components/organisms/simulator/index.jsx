@@ -1,4 +1,3 @@
-import Button from "../../atoms/button";
 import "./styles.css";
 import { useEffect, useState } from "react";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 import ProgressBar from "../progressbar";
 import Main from "../../UI/templates/main";
