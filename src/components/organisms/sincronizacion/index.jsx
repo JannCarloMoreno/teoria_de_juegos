@@ -70,7 +70,7 @@ const Sincronizacion = ({ data, getPlay }) => {
 
   return (
     <>
-      <section>
+      <section className='progressContainer'>
         <ProgressBar totalTime={valorDeHora} active={isActive} />
         <label htmlFor="">Tiempo de simulación: {formatTime(counter)}</label>
         <br />
