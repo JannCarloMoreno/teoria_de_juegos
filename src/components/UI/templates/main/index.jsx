@@ -97,7 +97,9 @@ export default function Main({ getPercentageApproval, getData }) {
     <section className='main'>
       <section className='senate'>
         <section className='prompt'>
+            <div style={{visibility: "visible"}}>
           <Prompt ref={promptRef} buttonText='Generate' handleChange={handleClick} inputPlaceholder='set configuration' dataParams={prompt} />
+            </div>
           {data && <Button className='showButton' onClick={generateTable} text={tableButtonText} />}
           <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
           <label className='totalSeats'>% de ocupación requerido: {percentageApproval}</label>
