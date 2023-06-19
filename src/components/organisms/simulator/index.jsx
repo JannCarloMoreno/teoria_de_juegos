@@ -1,20 +1,6 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
 
-export default function Simulator({ sendlambda }) {
-
-
-  const [lambda, setLambda] = useState(0);
-
-
-const handleLambda = (event) => {
-  setLambda(event.target.value)
-}
-
-useEffect(() => {
-  sendlambda(lambda)
-}, [lambda]);
-
+export default function Simulator() {
   return (
     <div className="simulator">
       <section className="simulator__config">
@@ -26,24 +12,18 @@ useEffect(() => {
           </label>
           <label htmlFor="" className="simulator__config--labelVer">
             cantidad de empresas
-            <input type="text" />
+            <input
+              type="number"
+              min={0}
+              value={numCompanies}
+              onChange={handleNumCompanies}
+            />
           </label>
         </section>
         <section className="simulator__config__companies">
           <h4>Selecciona la cantidad de maquinas a disponer por empresa</h4>
           <section></section>
-          <label htmlFor="" className="simulator__config--labelHor">
-            Compañía 1:
-            <input type="text" />
-          </label>
-          <label htmlFor="" className="simulator__config--labelHor">
-            Compañía 2:
-            <input type="text" />
-          </label>
-          <label htmlFor="" className="simulator__config--labelHor">
-            Compañía n:
-            <input type="text" />
-          </label>
+          {numCompanies != 0 && labelCompanies}
           <button>Calcular</button>
         </section>
       </section>
