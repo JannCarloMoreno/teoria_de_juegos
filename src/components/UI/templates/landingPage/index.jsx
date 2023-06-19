@@ -9,14 +9,35 @@ import funcionPercentilExpon from "../../../../utils/percentilExpon";
 import Sincronizacion from "../../../organisms/sincronizacion";
 
   export default function LandingPage() {
-    
-    //inputLambda, entrada del usuario, media entre llegadas de % de ocupación requerida por hora del total de maquinas contratadas
-    //restrucciones: entre 1 y 100
 
+    const [numServsPorCompania, setNumServsPorCompania] = useState([]); //array de int
+    const [precioUnitario, setPrecioUnitario] = useState(0);
+    const [numCompanias, setNumCompanias] = useState(0);
     const [lambda, setLambda] = useState(0);
+    const [costoMaxTotal, setCostoMaxTotal] = useState();
+    const [playSim, setPlaySim] = useState(false);
+    const [totalServs,setTotalServs] = useState(0)
 
-    const recieveLambda = (lambda) => {
-      setLambda(lambda)
+    const recieveData = (data) => {
+
+      setLambda(data?.lambda)
+      setNumServsPorCompania(data?.numServsPorCompania)
+      setPrecioUnitario(data?.precioUnitario)
+      setNumCompanias(data?.numCompanias)
+      setCostoMaxTotal(data?.costoMaxTotal)
+      setTotalServs(data?.totalServs)
+      console.log(data)
+    }
+
+    const startSimulation = (play) => {
+      if(play){
+        console.log("start simulation")
+        setPlaySim(true)
+        
+      }else{
+        console.log("stop simulation")
+        setPlaySim(false)
+      }
     }
     
     return (
@@ -25,7 +46,7 @@ import Sincronizacion from "../../../organisms/sincronizacion";
           <section className="main__title">
             
           </section>
-          <Simulator sendlambda={recieveLambda}/>
+          <Simulator sendData={recieveData} startSimulation={startSimulation}/>
           <Sincronizacion lambda={lambda}/>
         </section>
       );

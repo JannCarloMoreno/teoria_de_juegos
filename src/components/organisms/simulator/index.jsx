@@ -2,14 +2,15 @@ import Button from "../../atoms/button";
 import "./styles.css";
 import { useEffect, useState } from "react";
 
-export default function Simulator({ sendlambda }) {
+export default function Simulator({ sendData , startSimulation}) {
   
   const [valoresCompanias, setValoresCompanias] = useState([]); //array de int
   const [precioUnitario, setPrecioUnitario] = useState(0);
   const [numCompanies, setNumCompanies] = useState(0);
   const [lambda, setLambda] = useState(0);
   const [costoTotal, setCostoTotal] = useState();
-
+  const [totalServs,setTotalServs] = useState(0)
+  
 
   const handleLambda = (event) => {
     setLambda(event.target.value);
@@ -30,14 +31,20 @@ export default function Simulator({ sendlambda }) {
     setPrecioUnitario(event.target.value);
   }
 
-
-  const calculateTotalCost = () => {
-    const totalCost = valoresCompanias.reduce(
-      (acc, currentValue) => acc + currentValue * precioUnitario,
-      0
-    );
-    console.log("Costo máximo total:", totalCost);
+const handleSimulation = () => {
+  const simulationData = {
+    numServsPorCompania: valoresCompanias,
+    precioUnitario: precioUnitario,
+    numCompanias: numCompanies,
+    lambda: lambda,
+    costoMaxTotal: costoTotal,
+    totalServs: totalServs,
   };
+  
+  sendData(simulationData);
+  startSimulation(true);
+}
+
 
   const labelCompanies = Array.from({ length: numCompanies }, (_, index) => (
     <label className="simulator__config--labelHor" key={index}>
@@ -61,10 +68,6 @@ export default function Simulator({ sendlambda }) {
     </tr>
   )
 });
-  
-  useEffect(() => {
-    sendlambda(lambda);
-  }, [lambda]);
 
   useEffect(() => {
     const totalCost = valoresCompanias.reduce(
@@ -74,6 +77,15 @@ export default function Simulator({ sendlambda }) {
     setCostoTotal(totalCost);
   }, [valoresCompanias, precioUnitario]);
 
+
+  useEffect(() => {
+    const aux = valoresCompanias.reduce(
+      (acc, currentValue) => acc + currentValue,
+      0
+    );
+    
+    setTotalServs(aux);
+  }, [valoresCompanias]);
 
   return (
     <div className="simulator">
@@ -167,10 +179,12 @@ export default function Simulator({ sendlambda }) {
            <label htmlFor="" className="simulator__config--labelVer">
             
             <h4 style={{textAlign: "right"}}>Costo maximo total <b style={{color: "darkgreen"}}>{costoTotal?.toFixed(2)}$ </b>por hora</h4> 
+            <h4 style={{textAlign: "right"}}>Total servidores contratados <b style={{color: "blue"}}>{totalServs}</b></h4> 
             
+
            </label>
 
-          <button className="init_sim" style={{borderRadius: "10px", paddingBottom: "30px"}} >Iniciar Simulación</button>
+          <button className="init_sim" style={{borderRadius: "10px", paddingBottom: "30px"}} onClick={handleSimulation} >Iniciar Simulación</button>
           
 
         </section>
