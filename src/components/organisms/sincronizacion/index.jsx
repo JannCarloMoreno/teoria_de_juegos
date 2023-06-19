@@ -56,6 +56,12 @@ const Sincronizacion = ({ data, getPlay }) => {
     setPercentageApproval(funcionPercentilExpon(data?.lambda));
   }, [data?.lambda]);
 
+  const formatTime = (totalMinutes) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours} h ${minutes} min`;
+  };
+
   const handleButtonClick = () => {
     if (isActive) {
       return; // No hacer nada si isActive es true
@@ -67,7 +73,7 @@ const Sincronizacion = ({ data, getPlay }) => {
     <>
       <section>
         <ProgressBar totalTime={valorDeHora} active={isActive} />
-        <label htmlFor="">Tiempo de simulación: {Math.floor(counter )} min</label>
+        <label htmlFor="">Tiempo de simulación: {formatTime(counter)}</label>
         <br />
         <Button
           onClick={handleButtonClick}
