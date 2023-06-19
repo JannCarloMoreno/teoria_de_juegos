@@ -1,0 +1,17 @@
+name: 'Netlify deploy'
+
+on: 
+    push:
+        branches:
+            - 'main'
+
+
+jobs:
+  deploy:
+    name: 'Deploy to Netlify'
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.PROYECTO_ESTOCASTICOS }}
+          NETLIFY_DEPLOY_TO_PROD: true

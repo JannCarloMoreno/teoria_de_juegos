@@ -8,7 +8,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {
       //<Main/>
-      <LandingPage/>
+      <>
+        <LandingPage/>
+        <h1>hola esta es una prueba</h1>
+      </>
     }
   </React.StrictMode>,
 )
