@@ -20,7 +20,7 @@ const ProgressBar = ({ totalTime, active }) => {
             return prevProgress;
           }
 
-          return prevProgress + (100 / (totalTime * 10)); // Calcula el incremento basado en totalTime
+          return prevProgress + (100 / (6 * 10)); // Calcula el incremento basado en totalTime
         });
       }, 100);
     } else {
@@ -30,7 +30,7 @@ const ProgressBar = ({ totalTime, active }) => {
     return () => {
       clearInterval(interval);
     };
-  }, [active, totalTime]);
+  }, [active]);
 
   useEffect(() => {
     if (!active) {

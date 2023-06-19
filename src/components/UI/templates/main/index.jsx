@@ -77,17 +77,17 @@ export default function Main({ getPercentageApproval, getData }) {
     <section className='main'>
       <section className='senate'>
         <section className='prompt'>
-            <div style={{visibility: "hidden"}}>
-          <Prompt ref={promptRef} buttonText='Generate' handleChange={generateTable} inputPlaceholder='set configuration' dataParams={prompt} />
-            </div>
           <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
-          <label className='totalSeats'>% de ocupación requerido: {percentageApproval}</label>
+          <label className='totalSeats'>% de ocupación requerido: {percentageApproval ? percentageApproval : ""}</label>
         </section>
         <section className='data'>
           {data && <Group groups={data} values={values} paidValue={(this_totalSeats * percentageApproval)} />}
           {data && <ShapleyTable data={generateTable()} />}
         </section>
       </section>
+      <div style={{visibility: "hidden"}}>
+          <Prompt ref={promptRef} buttonText='Generate' handleChange={generateTable} inputPlaceholder='set configuration' dataParams={prompt} />
+            </div>
     </section>
   )
 }

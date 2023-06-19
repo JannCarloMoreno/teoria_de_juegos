@@ -4,9 +4,10 @@ import ProgressBar from "../progressbar";
 import Main from "../../UI/templates/main";
 import Button from "../../atoms/button";
 import funcionPercentilExpon from "../../../utils/percentilExpon";
+import Timer from "../timer";
 
 const Sincronizacion = ({ data, getPlay }) => {
-  const valorDeHora = 10;
+  const valorDeHora = 60; // Cambiado el valor para que 10 segundos de vida real sean 3600 segundos en el código
   const [percentageApproval, setPercentageApproval] = useState(0);
   const [this_data, setThis_Data] = useState({});
   const [isActive, setIsActive] = useState(false);
@@ -46,7 +47,7 @@ const Sincronizacion = ({ data, getPlay }) => {
           }
           return newCounter;
         });
-      }, valorDeHora * 100);
+      }, 100); // Cambiado el intervalo de tiempo a 100 ms para que la simulación sea más fluida
       setIntervalId(id);
     }
   };
@@ -66,7 +67,7 @@ const Sincronizacion = ({ data, getPlay }) => {
     <>
       <section>
         <ProgressBar totalTime={valorDeHora} active={isActive} />
-        <label htmlFor="">{counter}</label>
+        <label htmlFor="">Tiempo de simulación: {Math.floor(counter )} min</label>
         <br />
         <Button
           onClick={handleButtonClick}
