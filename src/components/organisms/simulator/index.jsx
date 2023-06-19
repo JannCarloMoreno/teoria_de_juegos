@@ -1,6 +1,34 @@
 import "./styles.css";
+import { useEffect, useState } from "react";
 
-export default function Simulator() {
+export default function Simulator({ sendlambda}) {
+
+  const [numCompanies, setNumCompanies] = useState(0);
+
+  const handleNumCompanies = (event) => {
+    setNumCompanies(event.target.value);
+  };
+
+  const labelCompanies = Array.from({ length: numCompanies }, (_, index) => (
+    <label className="simulator__config--labelHor" key={index}>
+      Compañía {index}:
+      <input type="text" />
+    </label>
+  ));
+
+  const [lambda, setLambda] = useState(0);
+
+
+const handleLambda = (event) => {
+  setLambda(event.target.value)
+}
+
+useEffect(() => {
+  sendlambda(lambda)
+}, [lambda]);
+
+
+
   return (
     <div className="simulator">
       <section className="simulator__config">
