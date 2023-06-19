@@ -1,8 +1,7 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 
-export default function Simulator({ sendlambda}) {
-
+export default function Simulator({ sendlambda }) {
   const [numCompanies, setNumCompanies] = useState(0);
 
   const handleNumCompanies = (event) => {
@@ -11,23 +10,20 @@ export default function Simulator({ sendlambda}) {
 
   const labelCompanies = Array.from({ length: numCompanies }, (_, index) => (
     <label className="simulator__config--labelHor" key={index}>
-      Compañía {index}:
+      Empresa {index + 1}:
       <input type="text" />
     </label>
   ));
 
   const [lambda, setLambda] = useState(0);
 
+  const handleLambda = (event) => {
+    setLambda(event.target.value);
+  };
 
-const handleLambda = (event) => {
-  setLambda(event.target.value)
-}
-
-useEffect(() => {
-  sendlambda(lambda)
-}, [lambda]);
-
-
+  useEffect(() => {
+    sendlambda(lambda);
+  }, [lambda]);
 
   return (
     <div className="simulator">
@@ -36,10 +32,10 @@ useEffect(() => {
         <section>
           <label htmlFor="" className="simulator__config--labelVer">
             tasa de llegada
-            <input type="number" onChange={handleLambda}  />
+            <input type="number" onChange={handleLambda} />
           </label>
           <label htmlFor="" className="simulator__config--labelVer">
-            cantidad de empresas
+            numero de Empresas
             <input
               type="number"
               min={0}
@@ -50,8 +46,15 @@ useEffect(() => {
         </section>
         <section className="simulator__config__companies">
           <h4>Selecciona la cantidad de maquinas a disponer por empresa</h4>
-          <section></section>
-          {numCompanies != 0 && labelCompanies}
+          {numCompanies != 0 && (
+            <>
+              <section className="simulator__config__companies__titles">
+                <p>Lista de Empresas</p>
+                <p>MV por Empresa</p>
+              </section>
+              {labelCompanies}
+            </>
+          )}
           <button>Calcular</button>
         </section>
       </section>

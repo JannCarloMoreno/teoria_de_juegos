@@ -1,67 +1,94 @@
-.simulator{
-    box-sizing: border-box;
-    min-height: 50vh;
-    color: black;
-    background: antiquewhite;
-    margin: 2% 5%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    box-shadow: 2px 3px 10px 0px rgba(248, 248, 248, 0.432);
+.simulator {
+  box-sizing: border-box;
+  min-height: 50vh;
+  color: black;
+  background: antiquewhite;
+  margin: 2% 5%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  box-shadow: 2px 3px 10px 0px rgba(248, 248, 248, 0.432);
 }
 
-.simulator__config{
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background: #fff;
-    padding: 4% 6%;
-    text-align: center;
+.simulator input {
+  background: #e5e7eb;
+  color: black;
+  border: 1px solid #297bff5e;
 }
 
-.simulator__config--labelVer{
-    display: flex;
-    flex-direction: column;
-    margin: 2% 0;
-    gap: 10px;
-    width: 100%;
-    text-align: start;
-    font-size: small;
-    font-style: italic;
+.simulator input:focus-visible {
+  box-shadow: 0 0 50px #0062ff88;
+  outline: 1px solid #0062ff;
 }
 
-
-.simulator__config--labelHor{
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    margin: 2% 0;
+.simulator input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
-.simulator__config__companies{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+.simulator input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-.simulator__config__companies h4{
-    margin: 0;
+.simulator__config {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: #fff;
+  padding: 4% 6%;
+  text-align: center;
 }
 
-.simulator__config__companies button{
-    box-sizing: border-box;
-    width: 100%;
-    height: 4vh;
-    border-radius: 2px;
-    margin: 2% 0;
+.simulator__config--labelVer {
+  display: flex;
+  flex-direction: column;
+  margin: 2% 0;
+  gap: 10px;
+  width: 100%;
+  text-align: start;
+  font-size: small;
+  font-style: italic;
 }
 
-.simulator__results{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #E5E7EB;
+.simulator__config--labelHor {
+  display: flex;
+  align-items: center;
+  gap: 160px;
+  margin: 2% 0;
+}
+
+.simulator__config__companies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.simulator__config__companies__titles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 100px;
+}
+
+.simulator__config__companies h4 {
+  margin: 0;
+}
+
+.simulator__config__companies button {
+  box-sizing: border-box;
+  width: 100%;
+  height: 4vh;
+  border-radius: 2px;
+  margin: 2% 0;
+  background: #0062ff;
+}
+
+.simulator__results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e7eb;
 }
