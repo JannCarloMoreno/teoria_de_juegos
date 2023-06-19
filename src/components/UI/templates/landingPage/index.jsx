@@ -23,7 +23,7 @@ import Sincronizacion from "../../../organisms/sincronizacion";
         <section className="main">
           <Header />
           <section className="main__title">
-            <h2>Simulador | Utilidad de recursos computacionales</h2>
+            
           </section>
           <Simulator sendlambda={recieveLambda}/>
           <Sincronizacion lambda={lambda}/>
