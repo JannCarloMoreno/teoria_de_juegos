@@ -33,8 +33,8 @@ const getValues = ref => {
 
 
 
-export default function Main({percentageApproval}){
-    const [totalSeats, setTotalSeats] = useState(0)
+export default function Main({getPercentageApproval}){
+    const [percentageApproval, setPercentageApproval] = useState(0.5)
     const [data, setData] = useState(null)
     const [table, setTable] = useState(null)
     const [isShowing, setIsShowing] = useState(false)
@@ -45,6 +45,10 @@ export default function Main({percentageApproval}){
 
    
     console.log(percentageApproval)
+
+    useEffect(() => {
+        setPercentageApproval(getPercentageApproval)
+    }, [getPercentageApproval]);
 
 
     let tableButtonText = `${isShowing?'Show':'Hide'} table`

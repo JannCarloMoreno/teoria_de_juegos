@@ -13,9 +13,12 @@ const Sincronizacion = ({ lambda }) => {
 
   console.log("lambda", lambda);
   //Generador aleatorio lcGrand
+
   useEffect(() => {
-    setPercentageApproval(funcionPercentilExpon(lambda));
-  }, []);
+  setPercentageApproval(funcionPercentilExpon(lambda));
+    
+  }, [lambda]);
+
 
   const play = () => {
     if (isActive) {
@@ -55,7 +58,7 @@ const Sincronizacion = ({ lambda }) => {
         <br />
         <Button onClick={play} text={text} />
       </section>
-      <Main percentageApproval={percentageApproval} />
+      <Main getPercentageApproval={percentageApproval} />
     </>
   );
 };
