@@ -20,9 +20,6 @@ const coallitionLength = coallition => coallition.length
 
 const coallitionPercentage = ({coallition, benches, totalServers}) => {
 
-  console.log("coalition",coallition) //coalition C_i
-  console.log("benches",benches) //numserversxcompani
-
   const serversSum = coallition.reduce((acc,current)=> acc+benches[current],0).toFixed(2)
 
   //porcentaje participación
@@ -58,8 +55,6 @@ const generateShapleyTable = ({benches, percentageApproval}) => {
 
   //calcula total servers
   const totalServers = Object.values(benches).reduce((acc, current) => acc + current, 0);
-  console.log("totalservers",totalServers)
-
   for (let coallition of coallitions){
     const S = coallitionPercentage({coallition, benches, totalServers})
     shapleyTable[coallition.join('-')] = {

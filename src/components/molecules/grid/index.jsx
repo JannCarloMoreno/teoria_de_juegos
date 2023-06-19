@@ -1,14 +1,27 @@
 import Square from "../../atoms/square"
 import './styles.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export default function Grid({color, amount, name, value, paidValue}){
+export default function Grid({color, amount, name, value, paidValue, sendValues}){
     const [isHover, setIsHover] = useState(false)
     
     const aux = value.toFixed(3)*100
     const aux2 = value.toFixed(3)*paidValue
+
+
     const [this_value, setValue] = useState(aux.toFixed(1));
     const [this_payvalue, setPayvalue] = useState(aux2.toFixed(2));
+
+
+    useEffect(() => {
+        setValue(aux.toFixed(1));
+        setPayvalue(aux2.toFixed(2));
+    }, [value]);
+
+    useEffect(() => {
+        sendValues(this_value, this_payvalue);
+    }, [this_value, this_payvalue]);
+
 
     const handleMouseEnter = () => setIsHover(true)
 

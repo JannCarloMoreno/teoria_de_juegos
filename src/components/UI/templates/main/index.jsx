@@ -30,10 +30,12 @@ export default function Main({ getPercentageApproval, getData }) {
   const [percentageApproval, setPercentageApproval] = useState(0.5)
   const [data, setData] = useState(null)
   const [values, setValues] = useState(null)
-
-  const [dataBuilder, setDataBuilder] = useState({})
-
   const [prompt, setPrompt] = useState("")
+
+  const [accCost, setAccCost] = useState(0);
+  const [accPercentaje, setAccPercentaje] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+  const [accNumber, setAccNumber] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+
 
   const promptRef = useRef(null)
 
@@ -73,15 +75,72 @@ export default function Main({ getPercentageApproval, getData }) {
     setData(incomingData)
   }, [percentageApproval])
 
+
+  
+  const handlePartialValues = (partialValues) => {
+
+    if(partialValues.length > 1){
+       
+    //1 actualizar acumulador de Valor total a pagar: 0 $
+      const costSum = partialValues.reduce((sum, element) => {
+      const partialPayment = parseFloat(element.partialPayment);
+      return sum + parseFloat(partialPayment);
+      }, 0);
+      setAccCost(costSum);
+
+    //2 actualizar acumulador de participacion acumulada
+    const auxArray = accNumber
+
+    partialValues.map((element, index) => {
+     const aux = parseFloat(element.partialPercentaje)*100 
+
+      auxArray[index] = auxArray[index]+aux
+
+    })
+
+    const valuesSum = auxArray.reduce((sum, element) => {
+      return sum + element;
+      }, 0);
+    
+      const finalPercentajeArray = []
+
+      auxArray.map((element, index) => {
+        const finalPercentaje = (element*100)/valuesSum
+        
+        finalPercentajeArray.push(finalPercentaje)
+         
+   
+       })
+    
+    setAccNumber([...auxArray]);
+    //setAccPercentaje
+    setAccPercentaje([...finalPercentajeArray]);
+
+    }
+  }
+
   return (
     <section className='main'>
       <section className='senate'>
         <section className='prompt'>
           <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
           <label className='totalSeats'>% de ocupación requerido: {percentageApproval ? percentageApproval : ""}</label>
+          
+          
+
+        <label className='totalSeats'> Valor total a pagar: {accCost.toFixed(2)} $</label>
+    
+        <label className='totalSeats'> % participación acumulada:</label>
+        {getData?.numServsPorCompania &&
+            getData?.numServsPorCompania.map((element, index) => (
+              <label className='totalSeats'> Compañía {index+1}:  {accPercentaje[index]} %</label>
+        ))
+        }
+
         </section>
         <section className='data'>
-          {data && <Group groups={data} values={values} paidValue={(this_totalSeats * percentageApproval)} />}
+          
+          {data && <Group sendPartialValues={handlePartialValues} groups={data} values={values} paidValue={ getData !== {} ? ((this_totalSeats * percentageApproval)*getData?.precioUnitario) : 0} />}
           {data && <ShapleyTable data={generateTable()} />}
         </section>
       </section>
