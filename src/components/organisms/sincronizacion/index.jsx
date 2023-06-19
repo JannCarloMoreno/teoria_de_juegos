@@ -4,7 +4,6 @@ import ProgressBar from "../progressbar";
 import Main from "../../UI/templates/main";
 import Button from "../../atoms/button";
 import funcionPercentilExpon from "../../../utils/percentilExpon";
-import Timer from "../timer";
 
 const Sincronizacion = ({ data, getPlay }) => {
   const valorDeHora = 60; // Cambiado el valor para que 10 segundos de vida real sean 3600 segundos en el código
