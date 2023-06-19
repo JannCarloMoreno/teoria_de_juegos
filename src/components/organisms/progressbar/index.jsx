@@ -14,9 +14,15 @@ const ProgressBar = ({ totalTime, active }) => {
             setProgress(0); // Reinicia el progreso al llegar al 100%
             return prevProgress;
           }
-          return prevProgress + (100 / totalTime);
+
+          if (prevProgress === 90) {
+            setProgress(100); // Establece el progreso en 100% después de 9 segundos
+            return prevProgress;
+          }
+
+          return prevProgress + (100 / (totalTime * 10)); // Calcula el incremento basado en totalTime
         });
-      }, 1000);
+      }, 100);
     } else {
       clearInterval(interval);
     }
@@ -25,6 +31,12 @@ const ProgressBar = ({ totalTime, active }) => {
       clearInterval(interval);
     };
   }, [active, totalTime]);
+
+  useEffect(() => {
+    if (!active) {
+      setProgress(0); // Reinicia el progreso cuando se desactiva
+    }
+  }, [active]);
 
   return (
     <div style={{ width: '200px', height: '10px', backgroundColor: '#e0e0e0', borderRadius: '5px', overflow: 'hidden' }}>

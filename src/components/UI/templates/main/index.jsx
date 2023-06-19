@@ -1,4 +1,3 @@
-import './styles.css'
 import Group from '../../../organisms/group'
 import Prompt from '../../../molecules/prompt'
 import Button from '../../../atoms/button'
@@ -30,8 +29,6 @@ const getValues = ref => {
 export default function Main({ getPercentageApproval, getData }) {
   const [percentageApproval, setPercentageApproval] = useState(0.5)
   const [data, setData] = useState(null)
-  const [table, setTable] = useState(null)
-  const [isShowing, setIsShowing] = useState(false)
   const [values, setValues] = useState(null)
 
   const [dataBuilder, setDataBuilder] = useState({})
@@ -64,26 +61,9 @@ export default function Main({ getPercentageApproval, getData }) {
     }
   }, [getData])
 
-  let tableButtonText = `${isShowing ? 'Show' : 'Hide'} table`
-
-  const handleClick = () => {
-    const incomingData = getInputData(promptRef)
-    const val = getValues(promptRef)
-    if (JSON.stringify(incomingData) !== JSON.stringify(data)) {
-      setValues(calculateShapleyForSenate({ benches: getValues(promptRef), percentageApproval: percentageApproval }))
-      setData(incomingData)
-    }
-  }
-
   const generateTable = () => {
     const incomingTable = generateShapleyTable({ benches: data, percentageApproval: percentageApproval })
-    if (isShowing) {
-      setTable(incomingTable)
-      setIsShowing(false)
-    } else {
-      setTable(null)
-      setIsShowing(true)
-    }
+    return incomingTable
   }
 
   useEffect(() => {
@@ -97,16 +77,15 @@ export default function Main({ getPercentageApproval, getData }) {
     <section className='main'>
       <section className='senate'>
         <section className='prompt'>
-            <div style={{visibility: "visible"}}>
-          <Prompt ref={promptRef} buttonText='Generate' handleChange={handleClick} inputPlaceholder='set configuration' dataParams={prompt} />
+            <div style={{visibility: "hidden"}}>
+          <Prompt ref={promptRef} buttonText='Generate' handleChange={generateTable} inputPlaceholder='set configuration' dataParams={prompt} />
             </div>
-          {data && <Button className='showButton' onClick={generateTable} text={tableButtonText} />}
           <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
           <label className='totalSeats'>% de ocupación requerido: {percentageApproval}</label>
         </section>
         <section className='data'>
           {data && <Group groups={data} values={values} paidValue={(this_totalSeats * percentageApproval)} />}
-          {table && <ShapleyTable data={table} />}
+          {data && <ShapleyTable data={generateTable()} />}
         </section>
       </section>
     </section>
