@@ -2,3 +2,10 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  .progressContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
