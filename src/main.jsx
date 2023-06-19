@@ -7,8 +7,7 @@ import LandingPage from './components/UI/templates/landingPage'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {
-      //<Main/>
-      <LandingPage/>
+        <LandingPage/>
     }
   </React.StrictMode>,
 )
