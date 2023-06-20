@@ -78,11 +78,24 @@ const factorialize = num => {
 
 const calculateShapleyFor = (bench, table) => {
   const coallitionsWithBench = Object.keys(table).filter(coallition => coallition.includes(bench))
-  const n = Math.sqrt(Object.keys(table).length)
+
+  console.log("origin",Object.keys(table).length)
+ 
+  const n = Math.log2(Object.keys(table).length);
+  
+
   return coallitionsWithBench.reduce((acc, current) => {
     const coallitionData = table[current]
     const inverseCoallitionData = table[getCoallitionWithout(bench,current)]
-    const sumValue = ((factorialize(coallitionData.k-1)*factorialize(n-coallitionData.k))/(factorialize(n)))*(parseFloat(coallitionData.vS)-parseFloat(inverseCoallitionData.vS))
+
+
+    console.log("n",n)
+
+    const sumValue = ((factorialize(coallitionData.k-1) * factorialize(n-coallitionData.k))
+                        / (factorialize(n))) * (parseFloat(coallitionData.vS) - parseFloat(inverseCoallitionData.vS))
+    
+    //console.log("acc",acc)
+    //console.log("sumvalue", sumValue)
     return acc + sumValue
   },0)
 }
@@ -100,12 +113,15 @@ const calculateShapleyForSenate = ({benches, percentageApproval}) => {
   console.log("table generated")
   console.log(this_shapleyTable)
   */
-
-  const aux = Object.keys(benches).reduce((acc, current) => {return {...acc, [current]:calculateShapleyFor(current, table)}}, {})
-  /*
+  //bug!
+  const aux = Object.keys(benches).reduce((acc, current) => {
+    return {...acc, [current]:calculateShapleyFor(current, table)}
+  
+  }, {})
+  
   console.log("final result")
   console.log(aux)
-  */
+  
   
   return aux
 

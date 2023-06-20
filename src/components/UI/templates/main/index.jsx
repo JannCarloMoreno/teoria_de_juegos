@@ -148,8 +148,9 @@ export default function Main({ getPercentageApproval, getData }) {
 
       auxArray.map((element, index) => {
         const finalPercentaje = (element * 100) / valuesSum;
-
+        
         finalPercentajeArray.push(finalPercentaje);
+        //console.log("finalpercentage",finalPercentaje)
       });
 
       setAccNumber([...auxArray]);
