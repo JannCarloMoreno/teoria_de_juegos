@@ -1,3 +1,4 @@
+import "./styles.css";
 import Group from "../../../organisms/group";
 import Prompt from "../../../molecules/prompt";
 import Button from "../../../atoms/button";
@@ -173,22 +174,28 @@ export default function Main({ getPercentageApproval, getData }) {
             Valor total a pagar: {accCost.toFixed(2)} $
           </label>
 
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label className="totalSeats"> Participación acumulada:</label>
+          <div className="totalSeats__table">
+            <div className="totalSeats__table__participation">
+              <label className="totalSeats__table__title">
+                {" "}
+                Participación acumulada:
+              </label>
               {getData?.numServsPorCompania &&
                 getData?.numServsPorCompania.map((element, index) => (
-                  <label className="totalSeats">
+                  <label className="totalSeats__table__items" key={index}>
                     {" "}
                     Compañía {index + 1}: {accPercentaje[index].toFixed(2)} %
                   </label>
                 ))}
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label className="totalSeats"> Distrubición de pagos:</label>
+            <div className="totalSeats__table__distribution">
+              <label className="totalSeats__table__title">
+                {" "}
+                Distrubición de pagos:
+              </label>
               {getData?.numServsPorCompania &&
                 getData?.numServsPorCompania.map((element, index) => (
-                  <label className="totalSeats">
+                  <label className="totalSeats__table__items" key={index}>
                     {" "}
                     {utilityArray[index].toFixed(2)} $
                   </label>
