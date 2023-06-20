@@ -4,7 +4,7 @@
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #666666;
   box-sizing: border-box;
 
   font-synthesis: none;
@@ -14,7 +14,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
-#root{
+#root {
   /* max-width: 1280px; */
   width: 100%;
 }

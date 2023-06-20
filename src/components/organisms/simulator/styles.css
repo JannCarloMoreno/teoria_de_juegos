@@ -2,12 +2,13 @@
   box-sizing: border-box;
   min-height: 50vh;
   color: rgb(202, 202, 202);
-  background: antiquewhite;
+  background: #3d3d3d;
   margin: 2% 5%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  box-shadow: 2px 3px 10px 0px rgba(248, 248, 248, 0.432);
+  box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.432);
+  border-radius: 10px;
 }
 
 .simulator input {
@@ -37,7 +38,7 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  background: #3d3d3d;
+  /* background: #3d3d3d; */
   padding: 4% 6%;
   text-align: center;
 }
@@ -65,9 +66,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
   text-align: start;
   font-size: medium;
-  
 }
-
 
 .simulator__config--labelHor {
   display: flex;
@@ -116,6 +115,10 @@ input::-webkit-inner-spin-button {
 .table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  border: 1px solid #015192c0;
+  overflow: hidden;
+  box-shadow: 2px 3px 10px 3px rgba(0, 0, 0, 0.432);
 }
 
 .table th,
@@ -126,19 +129,22 @@ input::-webkit-inner-spin-button {
 }
 
 .table th {
-  background-color: #0c0c0c;
+  background-color: #252525;
 }
 
-.table tr:nth-child(even) {
+.table tr {
   background-color: #727272;
 }
 
+.table tr:nth-child(even) {
+  background-color: #474747;
+}
+
 .table tr:hover {
-  background-color: #505050;
+  background-color: #272727;
 }
 
 .table .company {
-
 }
 
 .table .servers {

@@ -1,19 +1,24 @@
-header{
-    height: 5vh;
-    padding: 0 3%;
-    margin-bottom: 3vh;
-    background: rgb(0, 98, 255);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header {
+  height: 5vh;
+  padding: 0 3%;
+  margin-bottom: 3vh;
+  background: #0105ffad;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h3{
-    margin: 0;
-    padding: 0;
+h3 {
+  margin: 0;
+  padding: 0;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
+figure {
+  margin: 0;
+  padding: 0;
+  /* width: 5%; */
+}
+
+figure img {
+  width: 10vh;
 }
