@@ -6,16 +6,12 @@
 
 .senate {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 30px;
- 
-  
 }
 
 .data {
   display: flex;
-  
-
 }
 
 .performance__table {
