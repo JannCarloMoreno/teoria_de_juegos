@@ -1,42 +1,57 @@
 .performance {
   display: flex;
-  align-items: center;
-  gap: 50px;
-  margin: 40px 0;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.senate {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+ 
+  
+}
+
+.data {
+  display: flex;
+  
+
 }
 
 .performance__table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.432);
   border: 5px solid;
-  background: #444444;
+  background: #d2d2d2;
+  margin-top: 20px;
+  margin-right: 70px;
 }
 
 .performance__table td,
 tr {
   padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #303030;
 }
 
 .performance__table th {
   padding: 1%;
-  background-color: #1d1d1d;
+  background-color: #015192;
 }
 
 .performance__table tr {
-  background-color: #414141;
+  background-color: #c2c2c2;
 }
 
 .performance__table tr:nth-child(even) {
-  background-color: #6d6d6d;
+  background-color: #b0b0b0;
 }
 
 .performance__table tr:hover {
-  background-color: #1f1f1f;
+  background-color: #b1c2d5;
 }
 
 .totalSeats {

@@ -70,17 +70,25 @@ const Sincronizacion = ({ data, getPlay }) => {
 
   return (
     <>
-      <section className='progressContainer'>
-        <ProgressBar totalTime={valorDeHora} active={isActive} />
-        <label htmlFor="">Tiempo de simulación: {formatTime(counter)}</label>
-        <br />
+
+    <div style={{display: "flex" , justifyContent: "flex-end"}}>
+    <section className='progressContainer' style={{display: "flex" , flexDirection: "row", marginRight: "100px"}}>
         <Button
           onClick={handleButtonClick}
           text={text}
           disabled={isActive}
           className={isActive ? "disabled-button" : ""}
         />
+
+      <div > 
+      <ProgressBar totalTime={valorDeHora} active={isActive}  />
+        <label htmlFor="" style={{color: "whitesmoke"}}>Tiempo simulación: {formatTime(counter)}</label>
+      </div>
+        
+       
       </section>
+    </div>
+      
 
       <Main getPercentageApproval={percentageApproval} getData={this_data} />
     </>
