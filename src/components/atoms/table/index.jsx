@@ -4,7 +4,7 @@ import "./styles.css";
 const columns = [
   {
     field: "coallitionName",
-    headerName: "Coalisiones",
+    headerName: "Coaliciones",
     width: 200,
     headerAlign: "center",
     align: "center",
