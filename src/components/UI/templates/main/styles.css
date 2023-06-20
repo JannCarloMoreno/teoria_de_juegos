@@ -5,6 +5,40 @@
   margin: 40px 0;
 }
 
+.performance__table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.432);
+  border: 5px solid;
+  background: #444444;
+}
+
+.performance__table td,
+tr {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.performance__table th {
+  padding: 1%;
+  background-color: #1d1d1d;
+}
+
+.performance__table tr {
+  background-color: #414141;
+}
+
+.performance__table tr:nth-child(even) {
+  background-color: #6d6d6d;
+}
+
+.performance__table tr:hover {
+  background-color: #1f1f1f;
+}
+
 .totalSeats {
   height: 100%;
   display: flex;
