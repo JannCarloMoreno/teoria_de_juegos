@@ -1,6 +1,6 @@
 .group {
   display: grid;
-  background: #444444;
+  background: #d7d6d6;
   box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.432);
   grid-template-columns: repeat(3, 1fr);
   max-width: 60vw;

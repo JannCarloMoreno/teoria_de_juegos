@@ -1,8 +1,8 @@
 .simulator {
   box-sizing: border-box;
   min-height: 50vh;
-  color: rgb(202, 202, 202);
-  background: #3d3d3d;
+  color: rgb(27, 27, 27);
+  background: #d2d2d2;
   margin: 2% 5%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -12,14 +12,15 @@
 }
 
 .simulator input {
-  background: #4b4b4b00;
-  color: rgb(192, 192, 192);
-  border: 1px solid #297bff5e;
+  background: #e7e7e7;
+  color: rgb(0, 0, 0);
+  border: 2px solid #0000005e;
+  padding: 7px 5px;
 }
 
 .simulator input:focus-visible {
-  box-shadow: 0 0 50px #0062ff88;
-  outline: 1px solid #0062ff;
+  box-shadow: 0 0 50px #d3d3d388;
+  outline: 1px solid #0b771a;
 }
 
 .simulator input::-webkit-outer-spin-button,
@@ -125,23 +126,23 @@ input::-webkit-inner-spin-button {
 .table td {
   padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
 }
 
 .table th {
-  background-color: #252525;
+  background-color: #ffffff;
 }
 
 .table tr {
-  background-color: #727272;
+  background-color: #dddddd;
 }
 
 .table tr:nth-child(even) {
-  background-color: #474747;
+  background-color: #bcbcbc;
 }
 
 .table tr:hover {
-  background-color: #272727;
+  background-color: #b4cdf1;
 }
 
 .table .company {
@@ -152,6 +153,7 @@ input::-webkit-inner-spin-button {
 }
 
 .table .price {
-  color: rgb(0, 255, 0);
+  color: darkgreen;
+  font-weight: bold;
   text-align: center;
 }

@@ -3,7 +3,7 @@
     min-height: 100px;
     width: 200px;
     height: auto;
-    border: 1px solid whitesmoke;
+    border: 5px solid rgb(59, 55, 55);
     border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(5,1fr);
@@ -13,7 +13,7 @@
 }
 
 .gridLabel{
-    font-weight: bolder;
+    font-weight: normal;
     margin-bottom: 10px;
 }
 

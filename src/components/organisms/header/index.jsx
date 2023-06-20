@@ -3,9 +3,9 @@ import "./styles.css";
 export default function Header() {
   return (
     <header className="header">
-      <h3>Simulador | Utilidad de recursos computacionales</h3>
+      <h2 style={{color: "whitesmoke", textShadow: "2px 2px 5px black"}}>COMPUTING ENGINE | SIMULATOR</h2>
       <figure>
-        <img src="/src/assets/logoArt.png" alt="logoArt" />
+        <img style={{ width: "100px" }}  src="/src/assets/logoArt.png" alt="logoArt" />
       </figure>
     </header>
   );

@@ -34,7 +34,7 @@ export default function Grid({color, amount, name, value, paidValue, sendValues}
     }
     return (
         <div className="container">
-            <label className='gridLabel' htmlFor="" >{name}</label>
+            <h3  style={{fontWeight: "normal"}} htmlFor="" >Proveedor {name}</h3>
             <div className="grid" 
                 style={gridStyle(color)}
                 onMouseEnter={handleMouseEnter}
@@ -47,8 +47,15 @@ export default function Grid({color, amount, name, value, paidValue, sendValues}
                         <Square  color={color} key={index}/>)
             }  
             </div>
-            <label htmlFor='' className="gridLabel">Participación: {this_value}%</label>
-            <label htmlFor='' className="gridLabel">Valor a pagar: {this_payvalue}$</label>
+            <div style={{display: "flex", marginRight: "12px"}}>
+            <label style={{backgroundColor: "#efefef" ,marginLeft: "10px" , borderRadius: "4px"
+                    , padding: "0px 5px" , fontSize: "15px" , border: "black 1px solid"
+                    }} tmlFor=''  className="gridLabel">Participación  <b style={{color: "darkblue"}}> {this_value}%</b></label>
+            
+            <label style={{backgroundColor: "#efefef", marginLeft: "10px" , borderRadius: "4px"
+                    , padding: "0px 5px"  , fontSize: "15px" , border: "black 1px solid" , textAlign: "right"
+                    }} htmlFor='' className="gridLabel">Valor a pagar <b style={{color: "darkgreen"}}>{this_payvalue}$ </b> </label>
+            </div>
         </div>
 
                 

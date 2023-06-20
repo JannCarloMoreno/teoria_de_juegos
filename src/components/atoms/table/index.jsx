@@ -4,28 +4,28 @@ import "./styles.css";
 const columns = [
   {
     field: "coallitionName",
-    headerName: "Coaliciones posibles",
+    headerName: "Coalisiones",
     width: 200,
     headerAlign: "center",
     align: "center",
   },
   {
     field: "k",
-    headerName: "# Jugadores",
+    headerName: "Jugadores",
     width: 100,
     headerAlign: "center",
     align: "center",
   },
   {
     field: "S",
-    headerName: "% Ocupación",
+    headerName: "Ocupación %",
     width: 100,
     headerAlign: "center",
     align: "center",
   },
   {
     field: "vS",
-    headerName: "Funcion de pagos",
+    headerName: "Función Pagos $",
     width: 200,
     headerAlign: "center",
     align: "center",
@@ -50,8 +50,8 @@ export default function ShapleyTable({ data }) {
       <DataGrid
         sx={{
           margin: "0 10px",
-          color: "white",
-          backgroundColor: "#3d3d3d",
+          color: "black",
+          backgroundColor: "#d2d2d2",
           textAlign: "center",
           height: "100%",
           border: "none",
