@@ -5,7 +5,7 @@ export default function Header() {
     <header className="header">
       <h2 style={{color: "whitesmoke", textShadow: "2px 2px 5px black"}}>COMPUTING ENGINE | SIMULATOR</h2>
       <figure>
-        <img style={{ width: "100px" }}  src="/src/assets/logoArt.png" alt="logoArt" />
+        <img style={{ width: "100px" }}  src="/logoArt.png" alt="logoArt" />
       </figure>
     </header>
   );
