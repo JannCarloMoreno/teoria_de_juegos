@@ -81,7 +81,7 @@ export default function Main({ getPercentageApproval, getData }) {
   
   const handlePartialValues = (partialValues) => {
     
-    console.log(partialValues)
+    console.log("partial values",partialValues)
     if(partialValues.length > 1){
 
       
