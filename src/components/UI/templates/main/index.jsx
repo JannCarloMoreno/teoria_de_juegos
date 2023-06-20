@@ -109,15 +109,9 @@ export default function Main({ getPercentageApproval, getData }) {
   }, [percentageApproval]);
 
   const handlePartialValues = (partialValues) => {
-
-
-    
-    console.log("partial values",partialValues)
-    if(partialValues.length > 1){
-
-      
-       
-    //1 actualizar acumulador de Valor total a pagar: 0 $
+    console.log("partial values", partialValues);
+    if (partialValues.length > 1) {
+      //1 actualizar acumulador de Valor total a pagar: 0 $
       //guardad utilidad por empresa
       const auxUtilityArray = utilityArray;
 
@@ -167,65 +161,66 @@ export default function Main({ getPercentageApproval, getData }) {
   return (
     <section className="main">
       <section className="senate">
-        <section className="prompt">
-          <label className="totalSeats">
-            Total MV contratadas: {this_totalSeats}
-          </label>
-          <label className="totalSeats">
-            Ocupación requerida en esta hora:{" "}
-            {percentageApproval ? (percentageApproval * 100).toFixed(2) : ""}%
-          </label>
-          <label className="totalSeats">
-            {" "}
-            Valor total a pagar: {accCost.toFixed(2)} $
-          </label>
-
-          <div className="totalSeats__table">
-            <div className="totalSeats__table__participation">
-              <label className="totalSeats__table__title">
-                {" "}
-                Participación acumulada:
+        {getData?.numServsPorCompania && (
+          <section className="performance">
+            <section className="prompt">
+              <label className="totalSeats">
+                Total MV contratadas: {this_totalSeats}
               </label>
-              {getData?.numServsPorCompania &&
-                getData?.numServsPorCompania.map((element, index) => (
-                  <label className="totalSeats__table__items" key={index}>
-                    {" "}
-                    Compañía {index + 1}: {accPercentaje[index].toFixed(2)} %
-                  </label>
-                ))}
-            </div>
-            <div className="totalSeats__table__distribution">
-              <label className="totalSeats__table__title">
-                {" "}
-                Distrubición de pagos:
+              <label className="totalSeats">
+                Ocupación requerida en esta hora:{" "}
+                {percentageApproval
+                  ? (percentageApproval * 100).toFixed(2)
+                  : ""}
+                %
               </label>
-              {getData?.numServsPorCompania &&
-                getData?.numServsPorCompania.map((element, index) => (
-                  <label className="totalSeats__table__items" key={index}>
-                    {" "}
-                    {utilityArray[index].toFixed(2)} $
-                  </label>
-                ))}
-            </div>
-          </div>
-        </section>
-        <section className="data">
-          {data && (
-            <Group
-              sendPartialValues={handlePartialValues}
-              groups={data}
-              values={values}
-              paidValue={
-                getData !== {}
-                  ? this_totalSeats *
-                    percentageApproval *
-                    getData?.precioUnitario
-                  : 0
-              }
-            />
-          )}
-          {data && <ShapleyTable data={generateTable()} />}
-        </section>
+              <label className="totalSeats">
+                {" "}
+                Valor total a pagar: {accCost.toFixed(2)} $
+              </label>
+            </section>
+            <table className="performance__table">
+              <thead>
+                <tr>
+                  <th>Participación acumulada</th>
+                  <th>Distribución de pagos</th>
+                </tr>
+              </thead>
+              <tbody>
+                {getData?.numServsPorCompania &&
+                  getData?.numServsPorCompania.map((element, index) => (
+                    <tr key={index}>
+                      <td>
+                        {" "}
+                        Compañía {index + 1}: {accPercentaje[index].toFixed(2)}{" "}
+                        %
+                      </td>
+                      <td> {utilityArray[index].toFixed(2)} $</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </section>
+        )}
+        {getData?.numServsPorCompania && (
+          <section className="data">
+            {data && (
+              <Group
+                sendPartialValues={handlePartialValues}
+                groups={data}
+                values={values}
+                paidValue={
+                  getData !== {}
+                    ? this_totalSeats *
+                      percentageApproval *
+                      getData?.precioUnitario
+                    : 0
+                }
+              />
+            )}
+            {data && <ShapleyTable data={generateTable()} />}
+          </section>
+        )}
       </section>
       <div style={{ visibility: "hidden" }}>
         <Prompt
