@@ -9,9 +9,14 @@ export default function Group({ groups, values, paidValue, sendPartialValues }) 
   const [objectArray, setObjectArray] = useState([]);
 
   useEffect(() => {
-    const words = concateString.trim().split(' ');
-    const firstFourWords = words.slice(0, 8);
-    setWordArray(firstFourWords);
+
+    if (concateString !== ""){
+      const words = concateString.trim().split(' ');
+      const firstFourWords = words.slice(0, (Object.keys(groups).length * 2));
+
+      setWordArray(firstFourWords);
+    }
+
   }, [concateString]);
 
   useEffect(() => {
@@ -22,21 +27,29 @@ export default function Group({ groups, values, paidValue, sendPartialValues }) 
         const element = {partialPercentaje: wordArray[i], partialPayment: wordArray[i+1]}
         i++
         
-        myObjects.push(element);
+        myObjects.push(element);        
     }
 
     setObjectArray(myObjects);
 
   }, [wordArray]);
 
+
   useEffect(() => {
     sendPartialValues(objectArray);
+    setConcateString('');
   }, [objectArray]);
 
   const handleValues = useCallback((partialPercentaje, partialPayment) => {
+
+
     const newValue = `${partialPercentaje} ${partialPayment} `;
     setConcateString(prevValue => prevValue + newValue);
+
+
+
   }, []);
+
 
   return (
     <div className='group'>{

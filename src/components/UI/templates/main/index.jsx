@@ -78,26 +78,31 @@ export default function Main({ getPercentageApproval, getData }) {
 
   
   const handlePartialValues = (partialValues) => {
-
+    
+    console.log(partialValues)
     if(partialValues.length > 1){
+
+      
        
     //1 actualizar acumulador de Valor total a pagar: 0 $
       const costSum = partialValues.reduce((sum, element) => {
       const partialPayment = parseFloat(element.partialPayment);
       return sum + parseFloat(partialPayment);
       }, 0);
-      setAccCost(costSum);
+      setAccCost(accCost+costSum);
 
     //2 actualizar acumulador de participacion acumulada
     const auxArray = accNumber
 
     partialValues.map((element, index) => {
-     const aux = parseFloat(element.partialPercentaje)*100 
+     const aux = parseFloat(element.partialPercentaje)
 
       auxArray[index] = auxArray[index]+aux
-
+      
     })
-
+    
+    console.log("auxArray",auxArray)
+    
     const valuesSum = auxArray.reduce((sum, element) => {
       return sum + element;
       }, 0);
@@ -124,16 +129,16 @@ export default function Main({ getPercentageApproval, getData }) {
       <section className='senate'>
         <section className='prompt'>
           <label className='totalSeats'>Total MV contratadas: {this_totalSeats}</label>
-          <label className='totalSeats'>% de ocupación requerido: {percentageApproval ? percentageApproval : ""}</label>
+          <label className='totalSeats'>Ocupación requerida en esta hora: {percentageApproval ? (percentageApproval*100).toFixed(2) : ""}%</label>
           
           
 
         <label className='totalSeats'> Valor total a pagar: {accCost.toFixed(2)} $</label>
     
-        <label className='totalSeats'> % participación acumulada:</label>
+        <label className='totalSeats'> Participación acumulada:</label>
         {getData?.numServsPorCompania &&
             getData?.numServsPorCompania.map((element, index) => (
-              <label className='totalSeats'> Compañía {index+1}:  {accPercentaje[index]} %</label>
+              <label className='totalSeats'> Compañía {index+1}:  {accPercentaje[index].toFixed(2)} %</label>
         ))
         }
 
