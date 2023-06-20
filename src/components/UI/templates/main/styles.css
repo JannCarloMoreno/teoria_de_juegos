@@ -4,12 +4,12 @@
   align-items: center;
   padding: 0 2%;
   /* margin: 6px; */
-  background: #363636;
+  background: #ffffff;
 }
 
 .totalSeats:hover,
 .totalSeats__table:hover {
-  background: #505050;
+  background: #bebebe;
 }
 
 .totalSeats__table {
@@ -18,7 +18,7 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 30px;
-  background: #363636;
+  background: #cecece;
   padding: 0 2%;
 }
 
