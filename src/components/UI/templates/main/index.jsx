@@ -36,6 +36,7 @@ export default function Main({ getPercentageApproval, getData }) {
   const [accPercentaje, setAccPercentaje] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
   const [accNumber, setAccNumber] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
+  const [utilityArray, setUtilityArray] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
   const promptRef = useRef(null)
 
@@ -85,6 +86,18 @@ export default function Main({ getPercentageApproval, getData }) {
       
        
     //1 actualizar acumulador de Valor total a pagar: 0 $
+      //guardad utilidad por empresa
+      const auxUtilityArray = utilityArray
+
+      partialValues.map((element, index) => {
+        const aux = parseFloat(element.partialPayment)
+   
+        auxUtilityArray[index] = auxUtilityArray[index]+aux
+         
+       })
+
+      setUtilityArray([...auxUtilityArray]);
+
       const costSum = partialValues.reduce((sum, element) => {
       const partialPayment = parseFloat(element.partialPayment);
       return sum + parseFloat(partialPayment);
@@ -101,7 +114,7 @@ export default function Main({ getPercentageApproval, getData }) {
       
     })
     
-    console.log("auxArray",auxArray)
+    //console.log("auxArray",auxArray)
     
     const valuesSum = auxArray.reduce((sum, element) => {
       return sum + element;
@@ -135,12 +148,27 @@ export default function Main({ getPercentageApproval, getData }) {
 
         <label className='totalSeats'> Valor total a pagar: {accCost.toFixed(2)} $</label>
     
-        <label className='totalSeats'> Participación acumulada:</label>
-        {getData?.numServsPorCompania &&
-            getData?.numServsPorCompania.map((element, index) => (
-              <label className='totalSeats'> Compañía {index+1}:  {accPercentaje[index].toFixed(2)} %</label>
-        ))
-        }
+    <div style={{display: "flex" ,justifyContent: "space-between"}}>
+      <div style={{display: "flex", flexDirection: "column"}}>
+      <label className='totalSeats'> Participación acumulada:</label>
+          {getData?.numServsPorCompania &&
+              getData?.numServsPorCompania.map((element, index) => (
+                <label className='totalSeats'> Compañía {index+1}:     {accPercentaje[index].toFixed(2)} %</label>
+          ))
+          }
+      </div>
+      <div style={{display: "flex", flexDirection: "column"}}>
+      <label className='totalSeats'> Distrubición de pagos:</label>
+          {getData?.numServsPorCompania &&
+              getData?.numServsPorCompania.map((element, index) => (
+                <label className='totalSeats'> {utilityArray[index].toFixed(2)} $</label>
+          ))
+          }
+      </div>
+
+        
+    </div>
+        
 
         </section>
         <section className='data'>
