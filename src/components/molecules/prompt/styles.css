@@ -1,8 +1,9 @@
 .prompt {
+  height: 5vh;
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 11vh;
+  min-height: 160px;
   /* gap: 1em; */
   margin: 20px 0;
   padding: 1%;

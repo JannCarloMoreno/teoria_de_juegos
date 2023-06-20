@@ -1,15 +1,67 @@
+.performance {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.senate {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.data {
+  display: flex;
+}
+
+.performance__table {
+  width: 95%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.432);
+  border: 5px solid;
+  background: #d2d2d2;
+  margin-top: 20px;
+  margin-right: 70px;
+}
+
+.performance__table td,
+tr {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #303030;
+}
+
+.performance__table th {
+  padding: 1%;
+  background-color: #015192;
+}
+
+.performance__table tr {
+  background-color: #c2c2c2;
+}
+
+.performance__table tr:nth-child(even) {
+  background-color: #b0b0b0;
+}
+
+.performance__table tr:hover {
+  background-color: #b1c2d5;
+}
+
 .totalSeats {
   height: 100%;
   display: flex;
   align-items: center;
   padding: 0 2%;
   /* margin: 6px; */
-  background: #363636;
+  background: #ffffff;
 }
 
 .totalSeats:hover,
 .totalSeats__table:hover {
-  background: #505050;
+  background: #bebebe;
 }
 
 .totalSeats__table {
@@ -18,8 +70,10 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 30px;
-  background: #363636;
-  padding: 0 2%;
+  background: #cecece;
+  padding: 1% 2%;
+  border-radius: 10px;
+  border: 10px solid #444444;
 }
 
 .totalSeats__table__participation,
@@ -27,4 +81,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
