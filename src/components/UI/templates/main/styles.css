@@ -1,3 +1,10 @@
+.performance {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin: 40px 0;
+}
+
 .totalSeats {
   height: 100%;
   display: flex;
@@ -19,7 +26,9 @@
   justify-content: space-between;
   gap: 30px;
   background: #363636;
-  padding: 0 2%;
+  padding: 1% 2%;
+  border-radius: 10px;
+  border: 10px solid #444444;
 }
 
 .totalSeats__table__participation,
@@ -27,4 +36,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
