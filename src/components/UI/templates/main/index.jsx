@@ -109,9 +109,15 @@ export default function Main({ getPercentageApproval, getData }) {
   }, [percentageApproval]);
 
   const handlePartialValues = (partialValues) => {
-    console.log(partialValues);
-    if (partialValues.length > 1) {
-      //1 actualizar acumulador de Valor total a pagar: 0 $
+
+
+    
+    console.log("partial values",partialValues)
+    if(partialValues.length > 1){
+
+      
+       
+    //1 actualizar acumulador de Valor total a pagar: 0 $
       //guardad utilidad por empresa
       const auxUtilityArray = utilityArray;
 
