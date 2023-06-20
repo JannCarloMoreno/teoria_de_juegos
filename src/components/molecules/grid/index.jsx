@@ -12,17 +12,6 @@ export default function Grid({color, amount, name, value, paidValue, sendValues}
     const [this_value, setValue] = useState(aux.toFixed(1));
     const [this_payvalue, setPayvalue] = useState(aux2.toFixed(2));
 
-
-    useEffect(() => {
-        setValue(aux.toFixed(1));
-        setPayvalue(aux2.toFixed(2));
-    }, [value]);
-
-    useEffect(() => {
-        sendValues(this_value, this_payvalue);
-    }, [this_value, this_payvalue]);
-
-
     const handleMouseEnter = () => setIsHover(true)
 
     const handleMouseLeave = () => setIsHover(false)

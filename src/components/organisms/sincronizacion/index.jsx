@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 import ProgressBar from "../progressbar";
 import Main from "../../UI/templates/main";
@@ -70,7 +70,7 @@ const Sincronizacion = ({ data, getPlay }) => {
 
   return (
     <>
-      <section>
+      <section className='progressContainer'>
         <ProgressBar totalTime={valorDeHora} active={isActive} />
         <label htmlFor="">Tiempo de simulación: {formatTime(counter)}</label>
         <br />

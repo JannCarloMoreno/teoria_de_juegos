@@ -1,4 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
+import './styles.css'
 
 
 const columns = [
@@ -24,10 +25,11 @@ const generateRows = (data) => {
 export default function ShapleyTable({data}) {
     return(
         <div>
-            <DataGrid
+            <DataGrid 
                 sx = {{
                     margin: '0 10px',
-                    backgroundColor: 'white',
+                    color: 'white',
+                    backgroundColor: '#3d3d3d',
                     textAlign: 'center',
                     height: '100%'
                 }}
